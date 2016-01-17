@@ -1,16 +1,28 @@
 .right {text-align : right}
+
 .center {text-align : center}
+
 .left {text-align : left}
+
 .small {font-size : small}
+
 .medium {font-size : medium}
+
 .large {font-size : x-large}
+
 #arial{font-family : Arial, sans-serif}
+
 #courier{font-family : Courier, monospace}
+
 #georgia{font-family : Georgia, serif}
 
+
 img {margin : 20px}
+
 body p {color : blue; padding : 30px}
+
 body {background-color :  White} 
+
 body h1
 {
     background-color : lightSteelBlue;
@@ -19,24 +31,30 @@ body h1
     font-family : Courier, serif;
     text-align : center
 }
+
 div
 {
     margin : 10px 10px;
     background-color : lightYellow;
     padding : 10px;
 }
+
 div p {color : black;}
+
 span {color : red;}
+
 footer span
 {
     color : yellow;
     font-style : italic;
 }
+
 footer a
 {
     background-color : white;
     padding : 2px;
 }
+
 footer
 {
     font-family: Arial;
