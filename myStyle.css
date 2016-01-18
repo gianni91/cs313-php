@@ -1,65 +1,64 @@
-.right {text-align : right}
+img.topRight {
+	margin : 10px;
+	position:absolute; 
+	top:0px; 
+	left:10px;
+}
 
-.center {text-align : center}
+body p {
+	color : black; 
+	padding : 2px; 
+	text-align : center
+}
 
-.left {text-align : left}
-
-.small {font-size : small}
-
-.medium {font-size : medium}
-
-.large {font-size : x-large}
-
-#arial{font-family : Arial, sans-serif}
-
-#courier{font-family : Courier, monospace}
-
-#georgia{font-family : Georgia, serif}
-
-
-img {margin : 20px}
-
-body p {color : blue; padding : 30px}
-
-body {background-color :  White} 
+body {background-color : LightCyan } 
 
 body h1
 {
-    background-color : lightSteelBlue;
-    color : green;
-    padding : 20px 20px 5px;
-    font-family : Courier, serif;
-    text-align : center
+    
+	background-color : lightSteelBlue;
+    
+	color : green;
+    
+	padding : 20px;
+	font-family : Courier, serif;
+    
+	text-align : center
+
+}
+
+h2 {
+	text-align : center
 }
 
 div
 {
-    margin : 10px 10px;
-    background-color : lightYellow;
-    padding : 10px;
+    
+	margin : 10px 10px;
+    
+	background-color : lightYellow;
+    
+	padding : 10px;
+
 }
 
 div p {color : black;}
 
 span {color : red;}
 
-footer span
-{
-    color : yellow;
-    font-style : italic;
+table {
+	margin-left : auto;	
+	margin-right : auto;
+	background-color : grey;	
+	text-align : center;
+	style : "float:center";
+}
+th, td{
+	padding : 10px;
+	border: 1px solid ;
+	background-color : White;
 }
 
-footer a
-{
-    background-color : white;
-    padding : 2px;
-}
-
-footer
-{
-    font-family: Arial;
-    color: white;
-    background-color: brown;
-    padding : 10px 20px;
-    margin : 1px 1px
-}
+<!--
+Table centering code from : http://theodorakis.net/tablecentertest.html#css. Theodorakis, Nicholas. 2007."Centering Tables"
+-->
