@@ -10,7 +10,7 @@
             foreach ($_POST['places'] as $selected) {
         echo $selected . "</br>";}}
         ?> </p>
-        <p>Your Comments:</p> <br> <?php echo $_POST["comment"]; ?>
+        <p>Your Comments:</p> <?php echo $_POST["comment"]; ?>
 
     </body>
 </html>
