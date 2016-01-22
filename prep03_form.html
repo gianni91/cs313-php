@@ -12,10 +12,10 @@
 <p>Name</p> <input autocomplete="off" name="name" type="text" placeholder="Name">
 
 <p>Email</p><input autocomplete="off" name="email" value="<?php echo $email;?>" type="text" placeholder="Email">  <p>Major </p>
-       <input type="radio" name=”major”  <?php if (isset($major) && $major==“computer science”) echo "checked";?>  value="Computer Science">Computer Science <br>
-       <input type="radio" name=”major”  <?php if (isset($major) && $major==“web development and design”) echo "checked";?> value="Web Development and Design">Web Development and Design<br>
-       <input type="radio" name=”major”  <?php if (isset($major) && $major==“computer information technology”) echo "checked";?> value="Computer information Technology">Computer information Technology <br>
-       <input type="radio" name=”major”  <?php if (isset($major) && $major==“computer engineering”) echo "checked";?> value="Computer Engineering">Computer Engineering <br>
+       <input type="radio" name="major"  <?php if (isset($major) && $major=="computer science") echo "checked";?>  value="Computer Science">Computer Science <br>
+       <input type="radio" name="major"  <?php if (isset($major) && $major=="web development and design") echo "checked";?> value="Web Development and Design">Web Development and Design<br>
+       <input type="radio" name="major"  <?php if (isset($major) && $major=="computer information technology") echo "checked";?> value="Computer information Technology">Computer information Technology <br>
+       <input type="radio" name="major"  <?php if (isset($major) && $major=="computer engineering") echo "checked";?> value="Computer Engineering">Computer Engineering <br>
 
 <p>Places you have visited  </p>
        <input type="checkbox" <?php if (isset($places) && $places==“north america”) echo "checked";?> value="North America" name="places">North America <br>
