@@ -1,7 +1,11 @@
 <html>
 <body>
 
+<!-- 
 Testing
+
+
+
 <?php
 echo "<h2>Your Input:</h2>";
 echo $name;
@@ -23,6 +27,6 @@ $from = $_POST['email']; // this is the sender's Email address
 $name = $_POST['name']; 
 $comment = $_POST['comments'];
 ?>
-
+-->
 </body>
 </html>
