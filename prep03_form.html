@@ -1,39 +1,27 @@
-<!DOCTYPE HTML>
 <html>
-<head>
-<meta charset="utf-8" />
-<title>Form</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-</head>
-<body>
-  <h2>Survey</h2>
+    <body>
 
-<form action="prep03_form.php" method="post">
-<p>Name</p> <input autocomplete="off" name="name" type="text" placeholder="Name">
+        <form action="form.php" method="post">
+            <p> Name: </p> <input type="text" name="name"><br>
+            <p> E-mail: </p> <input type="text" name="email"><br>
+            
+            <p>Major:</p>
+                <input type="radio" name="major" value="Computer Science"> Computer Science <br>
+                <input type="radio" name="major" value="Web Development and Design"> Web Development and Design<br>
+                <input type="radio" name="major" value="Computer information Technology"> Computer information Technology <br>
+                <input type="radio" name="major" value="Computer Engineering"> Computer Engineering <br>
 
-<p>Email</p><input autocomplete="off" name="email" value="<?php echo $email;?>" type="text" placeholder="Email">  <p>Major </p>
-       <input type="radio" name="major"  <?php if (isset($major) && $major=="computer science") echo "checked";?>  value="Computer Science">Computer Science <br>
-       <input type="radio" name="major"  <?php if (isset($major) && $major=="web development and design") echo "checked";?> value="Web Development and Design">Web Development and Design<br>
-       <input type="radio" name="major"  <?php if (isset($major) && $major=="computer information technology") echo "checked";?> value="Computer information Technology">Computer information Technology <br>
-       <input type="radio" name="major"  <?php if (isset($major) && $major=="computer engineering") echo "checked";?> value="Computer Engineering">Computer Engineering <br>
+            <p>Places You Have Visited:</p>
+            <input type="checkbox" value="North America" name="places[]"> North America <br>
+            <input type="checkbox" value="South America" name="places[]">South America <br>
+            <input type="checkbox" value="Europe" name="places[]"> Europe <br>
+            <input type="checkbox" value="Asia" name="places[]"> Asia <br>
+            <input type="checkbox" value="Australia" name="places[]"> Australia <br>
+            <input type="checkbox" value="Africa" name="places[]"> Africa <br>
+            <input type="checkbox" value="Antarctica" name="places[]">Antarctica <br>
 
-<p>Places you have visited  </p>
-       <input type="checkbox" <?php if (isset($places) && $places==“north america”) echo "checked";?> value="North America" name="places">North America <br>
-       <input type="checkbox" value="South America" name="places" <?php if (isset($places) && $places==“south america”) echo "checked";?> >South America <br>
-       <input type="checkbox" value="Europe" name="places" <?php if (isset($places) && $places==“europe”) echo "checked";?> >Europe <br>
-       <input type="checkbox" value="Asia" name="places"<?php if (isset($places) && $places==“asia”) echo "checked";?> >Asia<br>
-       <input type="checkbox" value="Australia" name="places" <?php if (isset($places) && $places==“australia”) echo "checked";?>>Australia <br>
-       <input type="checkbox" value="Africa" name="places" <?php if (isset($places) && $places==“africa”) echo "checked";?> >Africa <br>
-       <input type="checkbox" value="Antarctica" name="places" <?php if (isset($places) && $places==“antarctica”) echo "checked";?>>Antarctica<br>
+            <input type="submit">
+        </form>
 
-<p>Comments </p>
-       <textarea   name="comments" rows=”5” cols=”40” ><?php echo $comment;?></textarea>
-<input type="reset" value="Reset">    
-<input type="submit" name="submit" value="Submit">     
- </form>
- </div>
-
-
-
-</body>
+    </body>
 </html>
