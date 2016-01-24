@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <script>
+	function repeat(){
+            document.getElementById("div1").innerHTML = document.getElementById("userInput").value;
+            document.getElementById("div2").innerHTML = document.getElementById("userInput").value;
+            document.getElementById("div3").innerHTML = document.getElementById("userInput").value;
+	}
+    </script>  
+  </head>
+  <body> 
+    <h1> HTML DOM Demonstration </h1>
+    <input type = "text" id="userInput"/>
+    <div id="div1"> </div>
+    <div id="div2"> </div>
+    <div id="div3"> </div>
+    <button type="button" onclick="repeat()"> Repeat the text </button>
+
+  </body>
+</html>

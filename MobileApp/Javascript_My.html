@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title> Javascript Demo </title>
+    <script>
+	var Student = function (name = "", major = "", school="") {
+	  this.name = name;
+	  this.major = major;
+	  this.school = school;
+ 	};
+	function display() 
+	{
+	   var me = new Student("Jonny", "Software Engineering", "BYU-Idaho");
+	   var messageText = "Hi, I'm " + me.name + ". I'm studying " + me.major + " at " + me.school + "!"; 
+	   alert(messageText);
+	};
+    </script>
+  </head>
+  <body>    
+    <h1> Javascript Demo </h1>
+    <p> This program uses JavaScript to define a 'student' class which is initialized with information about the student, push the button to see the results </p>
+    <button type="button" onclick="display()"> Introduction </button>
+  </body>
+</html>
