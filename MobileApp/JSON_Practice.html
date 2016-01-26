@@ -31,15 +31,44 @@
 <!-- 
 Notes:
 
-For a more organized view of what is stored in an JSON string, look at this
+For a more organized view of what is stored in the JSON string, look at this
 
+var my_JSON_Text =
 '
- {"Class_Name" : 
+ {"students" : 
    [
       {
-	"Attribute_1":"value" ,
-	"Attribute_2":"value" ,
-	"Attribute_3":"value"
+	"first_name":"Jonny" ,
+	"last_name":"Job" ,
+	"major":"Software Engineering"
+      },
+      {
+	"first_name":"Brittany" ,
+	"last_name":"Stone" ,
+	"major":"Computer Information Technology"
+
+      },
+      {
+	"first_name":"Laura" ,
+	"last_name":"Watson" ,
+	"major":"Computer Science"
+      }
+   ]
+ }
+'
+;
+
+
+
+To label each part...
+
+'
+ {"Object_Name" : 
+   [
+      {
+	"Member_Variable_1":"value" ,
+	"Member_Variable_2":"value" ,
+	"Member_Variable_3":"value"
       },
       {
 	(Same as above, another instance of the class)
@@ -51,6 +80,28 @@ For a more organized view of what is stored in an JSON string, look at this
  }
 '
 ;
+
+
+
+
+Comparable to xml:
+
+<student>
+   <first_name> Jonny </first_name>
+   <last_name> Job </last_name>
+   <major> Software Engineering </major>
+</student>   
+<student>
+   <first_name> Brittany </first_name>
+   <last_name> Stone </last_name>
+   <major> Computer Information Technology </major>
+</student>   
+<student>
+   <first_name> Laura </first_name>
+   <last_name> Watson </last_name>
+   <major> Computer Science </major>
+</student>   
+
 
 
  -->
