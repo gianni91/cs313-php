@@ -1,0 +1,56 @@
+<html>
+<head>
+  <title>JSON Demo</title>
+  <script>
+    function loadText()
+    {
+	var i = 0;   	// Change this to any number between 0 and 2 to see a different student displayed
+
+        var my_JSON_Text = '{"students" : [{"first_name":"Jonny","last_name":"Job","major":"Software Engineering"},{"first_name":"Brittany","last_name":"Stone","major":"Computer Information Technology"},{"first_name":"Laura","last_name":"Watson","major":"Computer Science"}]}';
+      	var my_JS_Object = JSON.parse(my_JSON_Text);
+
+        document.getElementById("display_area").innerHTML = "Name: " +
+		my_JS_Object.students[i].first_name + " " +
+		my_JS_Object.students[i].last_name + "<br> Major: " +
+		my_JS_Object.students[i].major+ "<br>";
+    }
+  </script>
+</head>
+<body style="text-align:center">
+  <h1>JSON Example</h1>
+  <p>
+
+    JSON is an organized way of storing JSON Object data. <br /><br />
+    <button type="button" onclick="loadText()"> Display </button>
+    <div id="display_area" align="center" > </div>
+
+  </p>    
+</body>
+</html>
+
+<!-- 
+Notes:
+
+For a more organized view of what is stored in an JSON string, look at this
+
+'
+ {"Class_Name" : 
+   [
+      {
+	"Attribute_1":"value" ,
+	"Attribute_2":"value" ,
+	"Attribute_3":"value"
+      },
+      {
+	(Same as above, another instance of the class)
+      },
+      {
+	(Same as above)
+      }
+   ]
+ }
+'
+;
+
+
+ -->
