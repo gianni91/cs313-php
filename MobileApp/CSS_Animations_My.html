@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+div {
+    width: 150px;
+    height: 150px;
+    background-color: blue;
+    position: relative;
+    -webkit-animation-name: myMod; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 5s; /* Chrome, Safari, Opera */
+    animation-name: myMod;
+    animation-duration: 5s;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes myMod {
+    0%   {background-color:blue; left:0px; top:0px;}
+    10%  {background-color:blue; left:0px; top:100px;}
+    20%  {background-color:green; left:200px; top:200px;}
+    40%  {background-color:yellow; left:150px; top:250px;}
+    60%  {background-color:orange; left:200px; top:300px;}
+    80%  {background-color:red; left:100px; top:400px;}
+    100% {background-color:blue; left:0px; top:0px;}
+}
+
+/* Standard syntax */
+@keyframes myMod {
+    0%   {background-color:blue; left:0px; top:0px;}
+    10%  {background-color:blue; left:0px; top:100px;}
+    20%  {background-color:green; left:200px; top:200px;}
+    40%  {background-color:yellow; left:150px; top:250px;}
+    60%  {background-color:orange; left:200px; top:300px;}
+    80%  {background-color:red; left:100px; top:400px;}
+    100% {background-color:blue; left:0px; top:0px;}
+}
+</style>
+</head>
+<body>
+
+<div style="text-align:center">Jonny</div>
+
+</body>
+</html>
+
+<!-- Modified from http://www.w3schools.com/css/tryit.asp?filename=trycss3_animation3 -->

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Assignment 08</title>
+  <script>
+    function loadText()
+    {
+      var myRequest = new XMLHttpRequest();
+      myRequest.onreadystatechange=function()
+      {    
+        if (myRequest.readyState==4 && myRequest.status==200)
+        {  
+          var rText = myRequest.responseText;
+          var rSplit = rText.split('\n'); 
+
+          document.getElementById("name_list").innerHTML = "";
+          for(var i = 1; i < 10; i++)
+          {
+              document.getElementById("name_list").innerHTML += rSplit[i] + "<br />";
+          }
+        }
+      }
+      myRequest.open("GET","names.txt",true);
+
+      myRequest.send();
+    }
+   </script>
+</head>
+<body style="text-align:center">
+  <h1> Class List </h1>
+  <div id="name_list"></div><br>
+  <button type="button" onclick="loadText()">Show</button>
+</body>
+</html>
+
