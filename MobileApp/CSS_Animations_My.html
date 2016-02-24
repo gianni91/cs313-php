@@ -2,22 +2,75 @@
 <html>
 <head>
 <style> 
-div {
+
+div.outer:hover {
+    animation-play-state: pause;
+}
+
+.animate {
+    position: relative;
+    -webkit-animation-name: myMod; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 5s; /* Chrome, Safari, Opera */
+    animation-iteration-count: 1;
+    animation-name: myMod;
+    animation-duration: 5s;
+}
+
+div.outer {
+    width: 350px;
+    height: 350px;
+    background-color: green;
+    image-width:350px; 
+    background-repeat: no-repeat;
+    position: relative;
+    -webkit-animation-name: myMod; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 5s; /* Chrome, Safari, Opera */
+    animation-iteration-count: 1;
+    animation-name: myMod2;
+    animation-duration: 5s;
+}
+
+div.inner {
     width: 150px;
     height: 150px;
+    background: url('C:\Users\Jonny_Jb\Desktop\School\Winter_2016\CS313\php\MobileApp\dog.jpg');
     background-color: blue;
     position: relative;
     -webkit-animation-name: myMod; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 5s; /* Chrome, Safari, Opera */
+    animation-iteration-count: 1;
     animation-name: myMod;
     animation-duration: 5s;
 }
 
 /* Chrome, Safari, Opera */
+@-webkit-keyframes myMod2 {
+    0%   {background-color:yellow; left:0px; top:0px; }
+    10%  {background-color:yellow; left:0px; top:100px; }
+    20%  {background-color:orange; left:200px; top:200px; }
+    40%  {background-color:red; left:150px; top:250px;}
+    60%  {background-color:purple; left:200px; top:300px;}
+    80%  {background-color:blue; left:100px; top:400px;}
+    100% {background-color:yellow; left:0px; top:0px;}
+}
+
+/* Standard syntax */
+@keyframes myMod2 {
+    0%   {background-color:yellow; left:0px; top:0px; }
+    10%  {background-color:yellow; left:0px; top:100px; transform:rotateZ(180deg);}
+    20%  {background-color:orange; left:200px; top:200px;transform:rotateZ(360deg);}
+    40%  {background-color:red; left:150px; top:250px;transform:rotateZ(450deg);}
+    60%  {background-color:purple; left:200px; top:300px;}
+    80%  {background-color:blue; left:100px; top:400px;}
+    100% {background-color:yellow; left:0px; top:0px;}
+}
+
+
+/* Chrome, Safari, Opera */
 @-webkit-keyframes myMod {
-    0%   {background-color:blue; left:0px; top:0px;}
-    10%  {background-color:blue; left:0px; top:100px;}
-    20%  {background-color:green; left:200px; top:200px;}
+    0%   {background-color:blue; left:0px; top:0px; }
+    10%  {background-color:blue; left:0px; top:100px; }
+    20%  {background-color:green; left:200px; top:200px; }
     40%  {background-color:yellow; left:150px; top:250px;}
     60%  {background-color:orange; left:200px; top:300px;}
     80%  {background-color:red; left:100px; top:400px;}
@@ -26,19 +79,35 @@ div {
 
 /* Standard syntax */
 @keyframes myMod {
-    0%   {background-color:blue; left:0px; top:0px;}
-    10%  {background-color:blue; left:0px; top:100px;}
-    20%  {background-color:green; left:200px; top:200px;}
-    40%  {background-color:yellow; left:150px; top:250px;}
+    0%   {background-color:blue; left:0px; top:0px; }
+    10%  {background-color:blue; left:0px; top:100px; transform:rotateZ(-180deg); transform:scale(2,2);}
+    20%  {background-color:green; left:200px; top:200px;transform:rotateZ(-360deg); transform:scale(3,3);}
+    40%  {background-color:yellow; left:150px; top:250px;transform:rotateZ(-450deg);}
     60%  {background-color:orange; left:200px; top:300px;}
     80%  {background-color:red; left:100px; top:400px;}
     100% {background-color:blue; left:0px; top:0px;}
 }
+
+
 </style>
+<script>
+	function anim()
+	{
+	   var thisDiv = document.getElementById("div2").classList.remove("inner");
+//	   document.getElementById("div2").classList.remove("inner");
+	   thisDiv.classList.add("animate");
+	  // thisDiv 
+	   this.classList.remove("inner");
+	   this.classList.add("animate");
+	}
+</script>
 </head>
 <body>
 
-<div style="text-align:center">Jonny</div>
+<div class="outer" id="div1" >
+<div class="inner id="div2" style="text-align:center">Animate</div> 
+<button type="button" onclick="anim()" >Animate</button>
+</div>
 
 </body>
 </html>
