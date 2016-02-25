@@ -1,113 +1,109 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+
+	function resetAnimation(selected)	
+	{
+	   selected.classList.remove(selected.classList[0]);
+	}
+	
+	function activeDogSelect(selected)
+	{
+	   if(selected.classList[0] !== "animateA")
+	   {
+		selected.classList.add("animateA");
+		window.setTimeout(function() {resetAnimation(selected);}, 2000);
+	   }
+
+	   document.getElementById("myDiv").innerHTML = "You prefer to have an energetic dog";
+	}
+
+	function relaxedDogSelect(selected)
+	{
+	   if(selected.classList[0] !== "animateB")
+	   {
+		selected.classList.add("animateB");
+		window.setTimeout(function() {resetAnimation(selected);}, 2000);
+	   }
+
+	   document.getElementById("myDiv").innerHTML = "You prefer to have a relaxed dog";
+	}
+
+
+</script>
+
 <style> 
 
-div.outer:hover {
-    animation-play-state: pause;
-}
 
-.animate {
+
+/************************************************
+* Left button animation
+*************************************************/
+
+.animateA {
     position: relative;
-    -webkit-animation-name: myMod; /* Chrome, Safari, Opera */
+    -webkit-animation-name: animate1; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 5s; /* Chrome, Safari, Opera */
     animation-iteration-count: 1;
-    animation-name: myMod;
-    animation-duration: 5s;
-}
-
-div.outer {
-    width: 350px;
-    height: 350px;
-    background-color: green;
-    image-width:350px; 
-    background-repeat: no-repeat;
-    position: relative;
-    -webkit-animation-name: myMod; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 5s; /* Chrome, Safari, Opera */
-    animation-iteration-count: 1;
-    animation-name: myMod2;
-    animation-duration: 5s;
-}
-
-div.inner {
-    width: 150px;
-    height: 150px;
-    background: url('C:\Users\Jonny_Jb\Desktop\School\Winter_2016\CS313\php\MobileApp\dog.jpg');
-    background-color: blue;
-    position: relative;
-    -webkit-animation-name: myMod; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 5s; /* Chrome, Safari, Opera */
-    animation-iteration-count: 1;
-    animation-name: myMod;
-    animation-duration: 5s;
+    animation-name: animate1;
+    animation-duration: 2s;
 }
 
 /* Chrome, Safari, Opera */
-@-webkit-keyframes myMod2 {
-    0%   {background-color:yellow; left:0px; top:0px; }
-    10%  {background-color:yellow; left:0px; top:100px; }
-    20%  {background-color:orange; left:200px; top:200px; }
-    40%  {background-color:red; left:150px; top:250px;}
-    60%  {background-color:purple; left:200px; top:300px;}
-    80%  {background-color:blue; left:100px; top:400px;}
-    100% {background-color:yellow; left:0px; top:0px;}
+@-webkit-keyframes animate1 {
+    10%  {transform:scale(1.1,1.1); }
+    20%  {transform:rotateZ(-360deg); }
+
 }
 
 /* Standard syntax */
-@keyframes myMod2 {
-    0%   {background-color:yellow; left:0px; top:0px; }
-    10%  {background-color:yellow; left:0px; top:100px; transform:rotateZ(180deg);}
-    20%  {background-color:orange; left:200px; top:200px;transform:rotateZ(360deg);}
-    40%  {background-color:red; left:150px; top:250px;transform:rotateZ(450deg);}
-    60%  {background-color:purple; left:200px; top:300px;}
-    80%  {background-color:blue; left:100px; top:400px;}
-    100% {background-color:yellow; left:0px; top:0px;}
+@keyframes animate1 {
+    10%  {transform:scale(1.1,1.1); }
+    20%  {transform:rotateZ(-360deg); }
 }
 
+
+/************************************************
+* Right button animation
+*************************************************/
+
+.animateB {
+    position: relative;
+    -webkit-animation-name: animate2; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 5s; /* Chrome, Safari, Opera */
+    animation-iteration-count: 1;
+    animation-name: animate2;
+    animation-duration: 2s;
+}
 
 /* Chrome, Safari, Opera */
-@-webkit-keyframes myMod {
-    0%   {background-color:blue; left:0px; top:0px; }
-    10%  {background-color:blue; left:0px; top:100px; }
-    20%  {background-color:green; left:200px; top:200px; }
-    40%  {background-color:yellow; left:150px; top:250px;}
-    60%  {background-color:orange; left:200px; top:300px;}
-    80%  {background-color:red; left:100px; top:400px;}
-    100% {background-color:blue; left:0px; top:0px;}
+@-webkit-keyframes animate2 {
+    0%   {left:0px;   top:0px;}
+    10%  {transform:scale(1.1,1.1);}
+    20%  {left:20px; top:20px;}
+    100% {left:0px;   top:0px;  opacity:0.5}
 }
 
 /* Standard syntax */
-@keyframes myMod {
-    0%   {background-color:blue; left:0px; top:0px; }
-    10%  {background-color:blue; left:0px; top:100px; transform:rotateZ(-180deg); transform:scale(2,2);}
-    20%  {background-color:green; left:200px; top:200px;transform:rotateZ(-360deg); transform:scale(3,3);}
-    40%  {background-color:yellow; left:150px; top:250px;transform:rotateZ(-450deg);}
-    60%  {background-color:orange; left:200px; top:300px;}
-    80%  {background-color:red; left:100px; top:400px;}
-    100% {background-color:blue; left:0px; top:0px;}
+@keyframes animate2 {
+    0%   {left:0px;   top:0px;}
+    10%  {transform:scale(1.1,1.1);}
+    20%  {left:20px; top:20px;}
+    100% {left:0px;   top:0px;  opacity:0.5}
 }
-
 
 </style>
-<script>
-	function anim()
-	{
-	   var thisDiv = document.getElementById("div2").classList.remove("inner");
-//	   document.getElementById("div2").classList.remove("inner");
-	   thisDiv.classList.add("animate");
-	  // thisDiv 
-	   this.classList.remove("inner");
-	   this.classList.add("animate");
-	}
-</script>
 </head>
-<body>
 
-<div class="outer" id="div1" >
-<div class="inner id="div2" style="text-align:center">Animate</div> 
-<button type="button" onclick="anim()" >Animate</button>
-</div>
+<body style="background:skyblue; text-align:center">
+  <p>
+	<h3>Energetic or Relaxed?</h3>
+	<img src="dog.jpg" id="dog1" alt="picture of a dog" onclick="activeDogSelect(this)">
+	<img src="dog2.jpg" id="dog2" alt="picture of a dog" onclick="relaxedDogSelect(this)">
+  </p>
+  <div id="myDiv"> </div>
+
 
 </body>
 </html>
