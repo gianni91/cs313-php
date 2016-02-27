@@ -1,0 +1,27 @@
+<html>
+<head>
+<style>
+
+img {
+	position: relative;
+	width: 220px;
+	height: 200px;
+	transition: width 1s, height 1s, transform 1s;
+
+}
+
+img:hover {
+    	width: 250px;
+   	height: 230px;	
+	transform:skewX(30deg) translate(100px, -40px) rotateX(45deg);	
+}
+
+</style>
+</head>
+<body style="text-align:center; background-color:skyblue;">
+   <h1> Transitions demonstration </h1>     
+   <h4> Bring your mouse over the image </h4>
+   <img src="dog.jpg" id="dog1" alt="picture of a dog" onclick="activeDogSelect(this)">
+
+</body>
+</html>
