@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Assignment 08</title>
-  <script>
+  <title>AJAX Demo</title>
+  <script> 
+    function start()
+    {
+	document.getElementById("sSmall").checked = true;
+	loadText();
+    }
+
+/*    function colorDiv()
+    {
+	document.getElementById("table1").style = "background-color:white";	
+    }*/
+
     function loadText()
     {
       var myRequest = new XMLHttpRequest();
@@ -11,25 +22,52 @@
         if (myRequest.readyState==4 && myRequest.status==200)
         {  
           var rText = myRequest.responseText;
-          var rSplit = rText.split('\n'); 
+	  var dogList = JSON.parse(rText);
 
-          document.getElementById("name_list").innerHTML = "";
-          for(var i = 1; i < 10; i++)
-          {
-              document.getElementById("name_list").innerHTML += rSplit[i] + "<br />";
-          }
+	  var selections = ["blank"];
+	  if(document.getElementById("sSmall").checked == true) {
+		selections.push("small");}
+	  if(document.getElementById("sMedium").checked == true) {
+		selections.push("medium");}
+	  if(document.getElementById("sLarge").checked == true) {
+		selections.push("large");}
+
+
+          var tableString = "<table border=\x224\x22 cellpadding=\x2210\x22 id=\x22table1\x22>" +
+                             "<tr><th>Breed</th><th>Size</th>" +
+                             "<th>Fur Length</th>" + "<th>Activity</th>";
+
+	  for(var i = 0; i < dogList.dogs.length; i++)
+ 	  {
+  	     for(var j = 0; j < selections.length; j++) 
+             {
+	        if(dogList.dogs[i].size == selections[j]) {
+                  tableString += ("<tr><td>" +
+                  dogList.dogs[i].breed + "</td><td>" +
+                  dogList.dogs[i].size + "</td><td>" +
+                  dogList.dogs[i].fur + "</td><td>" +
+                  dogList.dogs[i].activity + "</td></tr>");
+		}
+	     }
+	  }
+          tableString += "</table>";
+
+
+          document.getElementById("name_list").innerHTML = tableString;
         }
       }
-      myRequest.open("GET","names.txt",true);
-
+      myRequest.open("GET","json.txt",true);
       myRequest.send();
     }
    </script>
 </head>
-<body style="text-align:center">
-  <h1> Class List </h1>
-  <div id="name_list"></div><br>
-  <button type="button" onclick="loadText()">Show</button>
+<body onload="start()" style="text-align:center; background:skyBlue">
+<h1> Narrow your selection </h1>
+  <div id="name_list" align="center"></div><br>
+  <input type ="checkbox" name="sizeSelect" value="small" onchange="loadText()" id="sSmall">Small
+  <input type ="checkbox" name="sizeSelect" value="medium" onchange="loadText()" id="sMedium">Medium
+  <input type ="checkbox" name="sizeSelect" value="large" onchange="loadText()" id="sLarge">Large
+
 </body>
 </html>
 

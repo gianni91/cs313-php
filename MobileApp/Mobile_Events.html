@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AJAX Demo</title>
+  <script> 
+    function start()
+    {
+	document.getElementById("div1").style = "background-color:red" ; 
+	document.getElementById("div2").style = "background-color:white" ; 
+	document.getElementById("div3").style = "background-color:blue" ; 
+    }
+
+    function colorDiv(selected)
+    {
+	selected.style = "background-color:blue";
+    }
+
+    function colorDivRed(selected)
+    {
+	selected.style = "background-color:red";
+    }
+
+    function colorDivGreen(selected)
+    {
+	selected.style = "background-color:green";
+    }
+
+   </script>
+</head>
+<body onload="start()" style="text-align:center; background:skyBlue">
+  <div id="div1" align="center"  onTouchMove="colorDivRed(this)" onTouchStart="colorDiv(this)"> Touch to change the color </div><br>
+  <div id="div2" align="center"  onTouchMove="colorDivGreen(this)" onTouchStart="colorDiv(this)"> And slide to change it again </div><br>
+  <div id="div3" align="center"  onTouchMove="colorDiv(this)" onTouchStart="colorDivGreen(this)"> Same here </div><br>
+
+</body>
+</html>
+
