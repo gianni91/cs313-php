@@ -1,10 +1,79 @@
 <!DOCTYPE html>
-<html>
 <head>
-   <title> Hello World </title>
-   <link rel = "stylesheet" type ="text/css" href = "myStyle.css"></link>
+  <title>Jonny's Page</title>
+  <link rel = "stylesheet" type ="text/css" href = "myStyle.css"></link>
+  <script>
+     function hideTable()
+     {
+	document.getElementById("myTable").style.display="none";
+     }
+     function showTable()
+     {
+	document.getElementById("myTable").style.display="table";
+     }
+
+  </script>
 </head>
-  <body align="center">
- 	<h1>Hello World</h1>
+
+  <body style="background-image:url(fabric_of_squares_gray.png)" >  <!-- Texture from http://subtlepatterns.com/?s=fabric -->
+    <h1>
+	Jonny Job's Web Page
+    </h1>
+    <h2>
+       <a href = "assignments.html">Assignments</a>
+    </h2>
+    <img class="tlProfile" src = "Profile.jpg" alt="Profile picture" height="100" width="100"/>
+    <br>
+    <p>
+	   Brigham Young University-Idaho 
+	   <br />
+   	   Software Engineering 
+	   <br />
+	   Graduation : April 2017
+	   <br />
+	   <br />
+
+      	   &quot; <strong>Live</strong> as if you were to die tomorrow.
+    	   <strong>Learn</strong> as if you were to live forever.&quot;
+    	   -<em>Mahatma Gandhi</em>
+	<br />
+        <br />
+	<br />
+
+	<strong>Introduction:</strong><br />
+	I'm from Stansbury Park Utah but I grew up in Riverside California.<br />
+	I have nine siblings, most of which live in various parts of Utah. <br />
+	I enjoy playing sports, making music, and studying personality theory. <br />
+	I hope to one day design educational software.
+	<br />
+        <br />
+	<br />
+
+        <button type="button" id="hideButton" onclick="hideTable()">Hide Schedule</button>
+        <button type="button" id="showButton" onclick="showTable()">Show Schedule</button>
+    </p>
+
+    <table id="myTable">
+	   <tr>
+	      <th colspan = "3">
+		Classes
+              </th>
+	   </tr>
+	   <tr> 
+	      <th> Course </th>
+	      <th> Name </th>
+	      <th> Day/Time </th>
+	   </tr>
+	   <tr> 
+	      <td> CS 313 </td>
+	      <td> Web Engineering II </td>
+	      <td> Online </td>
+	   </tr>
+	   <tr> 
+	      <td> CS 364 </td>
+	      <td> Software Engineering I </td>
+	      <td> Online </td>
+	   </tr>
+    </table>
   </body>
 </html>
