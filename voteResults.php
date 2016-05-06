@@ -1,8 +1,3 @@
-<html>
-<head>
-  <title> Results </title>
-  <link rel = "stylesheet" type ="text/css" href = "myStyle2.css"></link>
-</head>
 <?php
   if(isset($_POST["work"]) && isset($_POST["class"]) && isset($_POST["wake"]) && isset($_POST["schedule"]))
   {
@@ -58,7 +53,14 @@
 
   fclose($myFile);
 ?>
-<body style="text-align:center">
+
+
+<!DOCTYPE html>
+<head>
+  <title> Results </title>
+  <link rel = "stylesheet" type ="text/css" href = "myStyle.css"></link>
+</head>
+<body style="text-align:center; background-image:url(fabric_of_squares_gray.png)" >  <!-- Texture from http://subtlepatterns.com/?s=fabric -->
   <h1 align="center"> Vote Results </h1>
 
 	Do you prefer to have a few large projects or a lot of individual conceptual assignments? <br><br>

@@ -1,10 +1,3 @@
-<html>
-  <head> 
-    <title>Vote Form</title>
-    <link rel = "stylesheet" type ="text/css" href = "myStyle2.css"></link>
-  </head>
-  <body>
-
 <?php
    if(!isset($_COOKIE["submitted"]))
    {
@@ -19,7 +12,17 @@
    }
 ?>
 
-     <h1 align="center"> Class Preference Survey </h1>
+<!DOCTYPE html>
+  <head> 
+    <title>
+	Vote Form
+    </title>
+    <link rel = "stylesheet" type ="text/css" href = "myStyle.css">
+  </head>
+  <body style="background-image:url(fabric_of_squares_gray.png)" >  <!-- Texture from http://subtlepatterns.com/?s=fabric -->
+
+
+     <h1 align="center"> Class Preference Survey</h1>
      <form  id="voteForm" action="voteResults.php" method="post" >
 	Do you prefer to have a few large projects or a lot of individual conceptual assignments? <br>
 	<input type="radio" name="work" value="bigProjects"> Big Projects <br>
@@ -42,8 +45,8 @@
 	<input type="radio" name="schedule" value="undecided"> Undecided <br><br>
 
 
-	<input type = "submit" value="See Results" > </input>
-	<input type = "reset" value="Clear Answers" > </input>
+	<input type = "submit" value="See Results">
+	<input type = "reset" value="Clear Answers">
      </form>
 
   </body>
