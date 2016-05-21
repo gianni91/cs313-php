@@ -10,8 +10,9 @@ try
 
 	echo "host:$dbHost:$dbPort dbName:$dbName user:$dbUser password:$dbPassword<br />\n";
    echo 'before <br />';
+/*
 	$db = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
-//	$db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", $dbUser, $dbPassword);
+	$db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", $dbUser, $dbPassword);  */
    echo 'after <br />';
 
 }
