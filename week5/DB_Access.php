@@ -19,5 +19,12 @@ catch (PDOException $ex)
 	die();
 }
 
+foreach ($db->query('SELECT name, age FROM Students') as $row)
+{
+   echo 'name: ' . $row['name'];
+   echo ' age: ' . $row['age'];
+   echo '<br />';
+}
+
 
 ?>
