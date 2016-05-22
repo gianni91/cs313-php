@@ -10,6 +10,12 @@ echo "host:$dbHost:$dbPort dbName:$dbName user:$dbUser password:$dbPassword<br /
 
 //$db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", $dbUser, $dbPassword);
 $db = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
-echo "host:$dbHost:$dbPort dbName:$dbName user:$dbUser password:$dbPassword<br />\n";
-echo "still works";
+
+foreach ($db->query('SELECT name, age FROM Students') as $row)
+{
+   echo 'name: ' . $row['name'];
+   echo ' age: ' . $row['age'];
+   echo '<br />';
+}
+
 ?>
