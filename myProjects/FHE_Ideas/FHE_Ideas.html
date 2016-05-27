@@ -1,0 +1,526 @@
+<html>
+<head>
+  <title> Fhe Ideas </title>
+  <script>
+     var ideas = [];
+     var seenIdeas = [];
+     var idea;
+     var numIdeas;
+     var clear = 0;
+ 	var reading = 0;
+ 	var writing = 0;
+	var busy = 0;
+
+//     var progBar = document.getElementById("pBar");
+
+     begin();
+
+function begin(){
+
+     readFile();
+     window.setTimeout(function(){showResults(0)},400); 
+     filter();
+
+}
+
+/***********************************
+*
+*
+**************************************/
+     function readFile() {
+	reading = 6;
+	var len = -1;
+
+     	var myRequest = new XMLHttpRequest();
+	myRequest.open("GET","FHE_Ideas.txt", true);  //(found out later that the following is deprecated. Set this to false so that the rest of the program doesn't continue until the request is ready. This means I don't need the onReadyStateChange part, See:   http://www.w3schools.com/ajax/ajax_xmlhttprequest_send.asp   
+    	myRequest.onreadystatechange=function()
+    	{
+            if (myRequest.readyState==4 && myRequest.status==200)
+	    {
+		ideas = JSON.parse(myRequest.responseText);	
+		len = ideas.length;
+		reading = 0;
+		return (len >= 0) ? len : -1 ;
+	    }		
+    	}
+	myRequest.send();
+     }
+
+
+
+
+
+
+
+/***********************************
+*
+*
+**************************************/		
+     function writeFile(toWrite) {
+	var before = readFile();
+	if(before != -1) 
+	{
+		writing = 6;
+		var postData = "passText=" + toWrite;
+	       	var myRequest = new XMLHttpRequest();
+		myRequest.open("POST","Write_Idea.php", true);
+		myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");  // This code retrieved from http://www.w3schools.com/ajax/ajax_xmlhttprequest_send.asp
+	      	myRequest.send(postData);
+    		myRequest.onreadystatechange=function()
+    		{
+  	        if (myRequest.readyState==4) {
+		   if(myRequest.status==200) {
+			document.getElementById("testDiv").innerHTML = myRequest.responseText;
+			writing = 0;
+			return 5;
+		   } else {
+			alert("error");
+		}
+
+			
+		  }
+		}
+
+//	      	myRequest.send(postData);
+			document.getElementById("testDiv").innerHTML = myRequest.responseText;
+	} else {
+		alert("FAILED TO WRITE FILE");
+	}			
+     }
+
+function checkIfReading() {
+	if (reading > 0) {
+	   reading -= 1;
+     	   window.setTimeout(checkIfReading,200); 		
+	} else {
+	   return -1;
+	}
+
+}
+
+/***********************************
+*
+*
+**************************************/
+     function addIdea() {
+	idea = {
+	    	description:"none",
+		category:"other",
+		priceMin:"0",
+		priceMax:"0",
+		car:"false",
+		travelTime:"0",
+		contact:"n/a",
+		activity:"relaxed",
+		id:"0",
+		author:"anonymous"
+	};
+
+	idea.description = document.getElementById("ideaInput").value;
+        if (!idea.description.match(/\w/) ) {
+		alert("Enter an idea to add");
+		return;
+   	} 
+
+	idea.category = document.getElementById("categoryInput").value;
+	if (idea.category == "none") {
+		alert("please select a category");
+		return;
+	}
+
+	idea.priceMin = document.getElementById("minCostInput").value;
+	if (!(idea.priceMin >= 0 )) {
+		alert("Invalid minimum cost");
+		return;
+	}
+
+	idea.priceMax = document.getElementById("maxCostInput").value;
+	if (idea.priceMax < 0 ) {
+		alert("Invalid maximum cost");
+		return;
+	}
+
+
+	idea.car = document.getElementById("carInput").value;
+	idea.travelTime = document.getElementById("travelTimeInput").value;
+	if (idea.travelTime < 0) {
+		alert("Invalid travel time");
+		return;
+	}
+	document.getElementById("categoryInput").value = "none"; //pause
+
+	idea.contact = document.getElementById("contactInput").value;
+	idea.id = Math.floor(Math.random()*10000);
+	idea.activity = document.getElementById("activityLevelInput").value;
+	idea.author = document.getElementById("usernameInput").value;
+
+	readFile();
+
+	document.getElementById("pBar").value = "1";
+	addIdea2();
+     }
+
+function addIdea2() {		// SEE http://www.w3schools.com/html/html5_webworkers.asp
+	if (reading > 0) {
+		reading = reading - 1;
+		setTimeout("addIdea2()",500); 
+	} else {
+		ideas.push(idea);
+		if(clear) { 
+		   ideas = [];
+		}
+		var encoded = JSON.stringify(ideas);
+     		writeFile(encoded); 
+		writing = 6;
+
+		document.getElementById("pBar").value = "4";
+		addIdea3();
+	}
+} 
+
+function addIdea3() {
+	if (writing > 0) {
+		writing = writing - 1;
+		setTimeout("addIdea3()",100); 
+	} else {
+
+		document.getElementById("pBar").value = "7";
+		setTimeout("showResults()",1500); 
+		document.getElementById("ideaInput").innerHTML = "";
+		document.getElementById("categoryInput").value = "none";
+		document.getElementById("maxCostInput").value = 0;
+		document.getElementById("minCostInput").value = 0;
+		document.getElementById("travelTimeInput").value = 0;
+	}
+} 
+
+
+/***********************************
+*
+*
+**************************************/
+     function removeIdea() {
+
+
+     	var num = document.getElementById("numInput").value;
+        if (num > ideas.length || num < 1) {
+	   alert("Please input the number of the Idea you want to delete");
+	   return;
+	} else if (document.getElementById("usernameInput").value != ideas[num-1].author) {
+	   alert("You must be the author of this idea to remove it, please put your username");
+	   return;
+	} 	
+
+	var idSearch = ideas[num-1].id;
+
+
+	readFile();
+   	reading = 6;
+	document.getElementById("pBar").value = "1";
+	removeIdea2(idSearch);
+     }
+
+     function removeIdea2(idS) {	
+	if (reading > 0) {
+		reading = reading - 1;
+//		setTimeout("removeIdea2(idS)",500);
+     		setTimeout(function(){removeIdea2(idS)},500); 
+	} else {
+  	   var targI = -1;
+	   for (var tempI = 0; tempI < ideas.length; tempI++) {
+		if(ideas[tempI].id == idS) {
+			targI = tempI;
+		}
+ 			//Todo - can be made more efficient
+	   }
+	   if(targI != -1) {
+		ideas.splice(targI,1);
+	   }
+
+	   var encoded = JSON.stringify(ideas);
+	   writeFile(encoded);
+           writing = 6;
+	   document.getElementById("pBar").value = "4";
+	   removeIdea3(encoded);
+	}
+     }
+
+     function removeIdea3(coded) {
+	if (writing > 0) {
+		writing = writing - 1;
+     		setTimeout(function(){removeIdea3(coded)},500); 
+	} else {
+		document.getElementById("pBar").value = "7";
+		showResults(0);
+	}
+     } 
+
+
+
+
+
+
+
+
+
+
+
+/*	
+	// Update 
+
+       	var myRequest = new XMLHttpRequest();
+	myRequest.open("POST","Write_Idea.php", true);
+	myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");  // This code retrieved from http://www.w3schools.com/ajax/ajax_xmlhttprequest_send.asp
+
+    	myRequest.onreadystatechange=function()
+    	{
+            if (myRequest.readyState==4 && myRequest.status==200)
+	    {
+			;
+	    }		
+    	}
+
+	var postData = "passText=" + encoded;
+
+      	myRequest.send(postData);
+	showResults(-1);
+
+
+     }
+*/
+
+/***********************************
+*
+*
+**************************************/
+     function hideResults() {
+	document.getElementById("tableDiv").style.display = "none";
+     }
+
+/***********************************
+*
+*
+**************************************/
+     function showResults(direction = 0) {
+
+	document.getElementById("pBar").value = "10";	
+
+	readFile();
+   	reading = 6;
+	showResults2();
+
+     }
+
+     function showResults2() {	
+	if (reading > 0) {
+		reading = reading - 1;
+		setTimeout("showResults2()",500); 
+	} else {
+		document.getElementById("pBar").value = "0";	
+		display();
+//		alert("finished reading for display");
+	}
+     } 
+
+
+function filter() {
+	for(var i = 0; i < ideas.length; i++)
+  	{
+	    seenIdeas[i] = 1;
+	    if(document.getElementById("sOutdoors").checked != true && ideas[i].category == "Outdoors")
+	    {
+		seenIdeas[i] = 0;
+	    }
+	    else if(document.getElementById("sGame").checked != true && ideas[i].category == "Game")
+	    {
+		seenIdeas[i] = 0;
+	    }
+	    else if(document.getElementById("sSkill").checked != true && ideas[i].category == "Skill")
+	    {
+		seenIdeas[i] = 0;
+	    }
+	    else if(document.getElementById("sService").checked != true && ideas[i].category == "Service")
+	    {
+		seenIdeas[i] = 0;
+	    }
+	    else if(document.getElementById("sEducational").checked != true && ideas[i].category == "Educational")
+	    {
+		seenIdeas[i] = 0;
+	    }
+	    else if(document.getElementById("sOther").checked != true && ideas[i].category == "Other")
+	    {
+		seenIdeas[i] = 0;
+	    }
+
+	    else if(document.getElementById("sRelaxed").checked != true && ideas[i].activity == "Relaxed")
+	    {
+		seenIdeas[i] = 0;
+	    }
+	    else if(document.getElementById("sAverage").checked != true && ideas[i].activity == "Average")
+	    {
+		seenIdeas[i] = 0;
+	    }
+	    else if(document.getElementById("sActive").checked != true && ideas[i].activity == "Active")
+	    {
+		seenIdeas[i] = 0;
+	    }
+
+	    else if(document.getElementById("sNoCar").checked == true && ideas[i].car == "Yes")
+	    {
+		seenIdeas[i] = 0;
+	    }
+	    else if(document.getElementById("sNoTravel").checked == true && ideas[i].travelTime > 0)
+	    {
+		seenIdeas[i] = 0;
+	    }
+	    else if(document.getElementById("sNoCost").checked == true && ideas[i].priceMin > 0)
+	    {
+		seenIdeas[i] = 0;
+	    }
+
+	}
+//	alert("Testing " + seenIdeas);
+
+display();
+//	alert("Testing ");
+}
+
+/***********************************
+*
+*
+**************************************/
+     function display() {				// Texture from http://subtlepatterns.com/?s=fabric
+
+
+
+
+
+        var tableString = "<table border=\x224\x22 background=\x22fabric_of_squares_gray.png\x22 bgcolor=\x22Azure\x22 cellpadding=\x2210\x22 id=\x22table1\x22>" +
+                             "<tr><th> # </th><th>Description</th>" +
+//			     "<th>Category</th>" +
+                             "<th> Price Range</th>" + 
+//			     "<th>Car?</th>" +  
+			     "<th>Travel</th>" +
+//			     "<th>Activity</th>" +  
+//			     "<th>id</th>" +  
+//			     "<th>author</th>" +  
+			     "<th>Contact</th>";
+
+
+	for(var i = 0; i < ideas.length; i++)
+  	{
+	   if(seenIdeas[i] != 0) {
+        	  tableString += ("<tr><td>" + 
+		  (i + 1) + "</td><td>" +
+		  ideas[i].description + "</td><td>" +
+//                  ideas[i].category + "</td><td> " +
+                  (ideas[i].priceMax == 0 ? "Free" : "$" + ideas[i].priceMin + " - " + ideas[i].priceMax) + "</td><td>" +                  
+//                  ideas[i].car + "</td><td>" +
+                  ideas[i].travelTime + " min" + "</td><td>" +
+//                  ideas[i].activity + "</td><td>" +
+//                  ideas[i].id + "</td><td>" +
+//                  ideas[i].author + "</td><td>" +
+                  ideas[i].contact + "</td></tr>");
+	   }
+        }
+ 
+	tableString += "</table>";
+	document.getElementById("tableDiv").innerHTML = tableString;
+	document.getElementById("tableDiv").style.display = "inline";
+
+     }
+
+
+
+
+
+  </script>
+</head>
+
+<body style="background-image:url(IdahoFalls2.png); background-attachment:fixed; background-size: 100% 100% ;background-repeat:no-repeat" > 
+  <div align="center">
+    <h1 id="text"> Rexburg Home Evening Ideas </h1>
+    <button type="button" onclick="showResults()"> Show </button>
+    <button type="button" onclick="hideResults()"> Hide </button> <br><br>
+
+    Category: 
+    <input type="checkbox" id="sOutdoors" checked="checked"> Outdoors
+    <input type="checkbox" id="sGame" checked="checked"> Game
+    <input type="checkbox" id="sSkill" checked="checked"> Skill
+    <input type="checkbox" id="sService" checked="checked"> Service
+    <input type="checkbox" id="sEducational" checked="checked"> Educational
+    <input type="checkbox" id="sOther" checked> Other <br>
+    Activity level: 
+    <input type="checkbox" id="sRelaxed" checked="checked"> Relaxed
+    <input type="checkbox" id="sAverage" checked="checked"> Average 
+    <input type="checkbox" id="sActive" checked> Active <br>
+    Conditions: 
+    <input type="checkbox" id="sNoCar" > No Car 
+    <input type="checkbox" id="sNoTravel" > No Travel 
+    <input type="checkbox" id="sNoCost" > No Cost <br>
+
+
+    <br><button type="button" onclick="filter()"> Filter </button><br><br>
+
+    <div id="tableDiv"> </div>
+  </div>
+
+   <h1> Add or Remove Ideas </h1>
+
+   Activity Description - Also include address if applicable<br>
+   <textarea id="ideaInput" cols="70" style="font-family:ariel"> </textarea> <br><br>
+
+   Category <br>
+   <select id="categoryInput">
+     <option name="category" value="none"></option>
+     <option name="category" value="Outdoors"> Outdoors </option>
+     <option name="category" value="Game"> Game </option>
+     <option name="category" value="Skill"> Skill </option>
+     <option name="category" value="Service"> Service </option>
+     <option name="category" value="Educational"> Educational </option>
+     <option name="category" value="Other"> Other </option>
+   </select><br><br>
+
+   Minimum Cost (per person) - If you have needed supplies or can borrow them<br>
+   $<input type="number" id="minCostInput" value="0"></input><br><br>
+
+   Maximum Cost (per person) - If you have to buy or rent supplies<br>
+   $<input type="number" id="maxCostInput" value="0"></input><br><br>
+
+   Is a car required? <br>
+   <select id="carInput">
+     <option name="car" value="No"> no </option>
+     <option name="car" value="Yes"> yes </option>
+   </select><br><br>
+
+   Travel Time (minutes)<br>
+   <input type="number" id="travelTimeInput" value="0"></input><br><br>
+
+   Activity Level<br>
+   <select id="activityLevelInput">
+     <option name="activity" value="Relaxed"> Relaxed </option>
+     <option name="activity" value="Average"> Average </option>
+     <option name="activity" value="Active"> Active </option>
+   </select><br><br>
+
+   Contact Info - If you must contact someone in order to get the activity organized/reserved <br>
+   Include: Organization/Name, Phone number<br>
+   <textarea id="contactInput" cols="70" style="font-family:ariel"> </textarea> <br><br>
+
+   Username - The first part of your byui e-mail (before the @)<br>
+   <input type="text" id="usernameInput" style="font-family:ariel"></input> <br>
+
+   <p id="results"> </p>
+   <button type="button" onclick="addIdea()"> Add </button>
+   <progress value="0" max = "10" id="pBar"></progress> (If your idea doesn't show up, refresh the page)
+   <br><br>   
+
+   <button type="button" onclick="removeIdea()">Remove</button> 
+   # <input type="number" id="numInput"></input> <br> <br>
+
+
+   <div id="testDiv"></div>
+  
+
+</body>
+</html>
