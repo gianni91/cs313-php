@@ -17,9 +17,9 @@
     <title>
 	Vote Form
     </title>
-    <link rel = "stylesheet" type ="text/css" href = "myStyle.css">
+    <link rel = "stylesheet" type ="text/css" href = "../styles/myStyle.css">
   </head>
-  <body style="background-image:url(fabric_of_squares_gray.png)" >  <!-- Texture from http://subtlepatterns.com/?s=fabric -->
+  <body style="background-image:url(../images/fabric_of_squares_gray.png)" >  <!-- Texture from http://subtlepatterns.com/?s=fabric -->
 
 
      <h1 align="center"> Class Preference Survey</h1>
