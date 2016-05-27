@@ -1,5 +1,0 @@
-solo++Easton, Susan++3403030++beginner++piano++Snow++3004++8:00am
-solo++Anderson, Jane++3403030++beginner++piano++Snow++3004++8:00am
-duet++John, Jane++2444++pre-advanced++piano++SNOW++2457++10:30am
-duet++Doe, Doe++40404++pre-advanced++piano++SNOW++2457++10:30am
-solo++Anderson, Jane++3403030++beginner++piano++Snow++3004++8:00am
