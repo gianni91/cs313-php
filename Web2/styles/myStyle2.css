@@ -1,0 +1,53 @@
+body p {
+	color : black; 
+	padding : 2px; 
+	text-align : center
+}
+
+body {background-color : LightCyan } 
+
+body h1
+{
+    
+	background-color : lightSteelBlue;
+    
+	color : green;
+    
+	padding : 20px;
+	font-family : Courier, serif;
+    
+	text-align : center
+
+}
+button {text-align:center}
+h2 {text-align : center}
+
+div
+{
+    
+	margin : 10px 10px;
+    
+	background-color : lightYellow;
+    
+	padding : 10px;
+
+}
+
+div p {color : black;}
+
+span {color : red;}
+
+table {
+	margin-left : auto;	
+	margin-right : auto;
+	background-color : grey;	
+}
+th, td{
+	padding : 10px;
+	border: 1px solid ;
+	background-color : White;
+}
+
+<!--
+Table centering code from : http://theodorakis.net/tablecentertest.html#css. Theodorakis, Nicholas. 2007."Centering Tables"
+-->

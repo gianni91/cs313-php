@@ -1,0 +1,31 @@
+<html>
+    <body>
+
+        <form action="prep03_form.php" method="post">
+            <p> Name: </p> <input type="text" name="name"><br>
+            <p> E-mail: </p> <input type="text" name="email"><br>
+            
+            <p>Major:</p>
+                <input type="radio" name="major" value="Computer Science"> Computer Science <br>
+                <input type="radio" name="major" value="Web Development and Design"> Web Development and Design<br>
+                <input type="radio" name="major" value="Computer information Technology"> Computer information Technology <br>
+                <input type="radio" name="major" value="Computer Engineering"> Computer Engineering <br>
+
+            <p>Places You Have Visited:</p>
+            <input type="checkbox" value="North America" name="places[]"> North America <br>
+            <input type="checkbox" value="South America" name="places[]">South America <br>
+            <input type="checkbox" value="Europe" name="places[]"> Europe <br>
+            <input type="checkbox" value="Asia" name="places[]"> Asia <br>
+            <input type="checkbox" value="Australia" name="places[]"> Australia <br>
+            <input type="checkbox" value="Africa" name="places[]"> Africa <br>
+            <input type="checkbox" value="Antarctica" name="places[]">Antarctica <br>
+
+            <p>Comments:</p>
+            <textarea name="comment" rows="10" cols="50"></textarea> <br>
+    <input type="reset" value="Reset">
+           <input type="submit">
+
+        </form>
+
+    </body>
+</html>
