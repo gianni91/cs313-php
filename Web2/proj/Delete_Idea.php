@@ -27,7 +27,7 @@ catch (PDOException $theError)
 
 <body style="background-image:url(IdahoFalls2.png); background-attachment:fixed; background-size: 100% 100% ;background-repeat:no-repeat" > 
 
-   <h1 style="text-align:center"> Add or Remove Ideas </h1>
+   <h1 style="text-align:center"> Remove an Idea </h1>
 
   <form action="remove_from_database.php" method="POST">
   <div style = "margin: 40px; padding:20px; background-color:rgba(250,250,250,0.8); border-radius:25px">
