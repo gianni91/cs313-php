@@ -9,23 +9,29 @@ try
 catch (PDOException $theError)
 {
 	echo 'Error: ' . $theError->getMessage();
-	die();					// Kills the program if it didn't work?
+	die();
 }
 
+// Recieve the values from the form
 $general_idea   = $_POST['selectGeneralDescription'];
 $custom_idea    = $_POST['ideaInput'];
 $activity_level = $_POST['activityLevelInput'];
 $category       = $_POST['categoryInput'];
 $submitType     = $_POST['submitType'];
 
-
+// If the user selected to add a custom idea rather than to choose from an existing one...
 if ($general_idea == "Custom") {
+
+	// See if the inputted idea matches one that already exists
 	$statement6 = $db->PREPARE('SELECT g_id FROM general_ideas WHERE description = :custom_idea');
 	$statement6->bindValue(':custom_idea', $custom_idea, PDO::PARAM_INT);
 	$statement6->execute();
 	$values = $statement6->FETCHALL(PDO::FETCH_ASSOC);
 
+    // Only check this here if the user chose to submit the general idea only, and not to ad details
     if ($submitType == 0 ) {
+
+      // If the inputted idea matches an existing idea, dno't add it to the database
       if (sizeOf($values) < 1) {
 	$statement = $db->PREPARE('INSERT INTO general_ideas VALUES (NULL, :description, :activity_level, :category)');
 	$statement->bindValue(':description', $custom_idea, PDO::PARAM_INT);
@@ -33,32 +39,22 @@ if ($general_idea == "Custom") {
 	$statement->bindValue(':category', $category, PDO::PARAM_INT);
 	$statement->execute();
       }  
+
+      // Finish the idea adding process here insteading of continuing to add details
       header('Location:FHE_Ideas.php');	
     }
 } 
-
-
-//echo 'submit type: '.$submitType;
-
-
-
 
 ?>
 
 <html>
 <head>
-  <title> Add FHE Idea </title>
-  <script>
-
-
-  </script>
+  <title> Add FHE Detail </title>
 </head>
 
 <body style="background-image:url(IdahoFalls2.png); background-attachment:fixed; background-size: 100% 100% ;background-repeat:no-repeat" > 
 
-
-   <h1 style="text-align:center"> Add or Remove Ideas </h1>
-
+   <h1 style="text-align:center"> Add Details </h1>
 
 <form action="Add_Idea3.php" method="POST">
  <div style = "margin: 40px; padding:20px; background-color:rgba(250,250,250,0.8); border-radius:25px">

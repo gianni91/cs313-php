@@ -8,28 +8,31 @@ try
 catch (PDOException $theError)
 {
 	echo 'Error: ' . $theError->getMessage();
-	die();					// Kills the program if it didn't work?
+	die();
 }
-
-
-
 ?>
 
 <html>
 <head>
   <title> Add FHE Idea </title>
   <script>
-	function verifyInput(submitType) {
-	 if(document.getElementById("selectGeneralDescription").value == "Custom") {
- 	   if (!document.getElementById("ideaInput").value.match(/\w/) || document.getElementById("activityLevelInput").value == "None" || document.getElementById("categoryInput").value == "None")
-	   {
-		return false;
-	   } 
-         } 
-	 document.getElementById("submitType").value = submitType;
-//	alert(document.getElementById("submitType").value);
 
-	 return true; 
+	// Makes sure the correct fields are filled out before allowing the user to submit
+	function verifyInput(submitType) {
+
+	   if(document.getElementById("selectGeneralDescription").value == "Custom") {
+
+ 	      if (!document.getElementById("ideaInput").value.match(/\w/) || document.getElementById("activityLevelInput").value == "None" || document.getElementById("categoryInput").value == "None")
+	      {
+		   return false;
+	      } 
+
+           } 
+	
+	   // Stores whether the user wants to add the general idea only, or to add a detailed idea with it
+	   document.getElementById("submitType").value = submitType;
+
+	   return true; 
 	}
 
   </script>
@@ -37,61 +40,61 @@ catch (PDOException $theError)
 
 <body style="background-image:url(IdahoFalls2.png); background-attachment:fixed; background-size: 100% 100% ;background-repeat:no-repeat" > 
 
+   <h1 style="text-align:center"> Add an Idea </h1>
 
-   <h1 style="text-align:center"> Add or Remove Ideas </h1>
+   <form action="Add_Idea2.php" method="POST">
+   <div style = "margin: 40px; padding:20px; background-color:rgba(250,250,250,0.8); border-radius:25px">
 
+      Select one 
 
-<form action="Add_Idea2.php" method="POST">
- <div style = "margin: 40px; padding:20px; background-color:rgba(250,250,250,0.8); border-radius:25px">
+      <select name="selectGeneralDescription" id="selectGeneralDescription">
+         <option value="Custom">  </option>
 
-   Select one 
-   <select name="selectGeneralDescription" id="selectGeneralDescription">
-     <option value="Custom">  </option>
+	 <?php 
 
-	<?php $statement = $db->QUERY('SELECT description, g_id, category FROM general_ideas');
-	WHILE ($oneRow = $statement->FETCH(PDO::FETCH_ASSOC))
-	{
-//		echo '<option name="activity" value="$oneRow['description']">' . $oneRow['description'] . '</option>';
+	    // Creates select options from the current general ideas 
+	    $statement = $db->QUERY('SELECT description, g_id, category FROM general_ideas');
+	    WHILE ($oneRow = $statement->FETCH(PDO::FETCH_ASSOC))
+	    {
 		echo '<option value="'. $oneRow['description'] . '">' . $oneRow['description'] . '</option>';
-        }
-?>
-   </select><br><br>
+            }
+         ?>
 
-   or <br /><br />
+      </select><br /><br />
 
-   General Activity Description <br>
-   <textarea id="ideaInput" name="ideaInput" maxlength="60" cols="60" rows="1" style="font-family:ariel"></textarea> <br><br>
+      or <br /><br />
 
-   Activity Level<br>
-   <select name="activityLevelInput" id="activityLevelInput">
-     <option value="None"> </option>
-     <option value="Relaxed"> Relaxed </option>
-     <option value="Average"> Average </option>
-     <option value="Active"> Active </option>
-   </select><br><br>
+      General Activity Description <br />
+      <textarea id="ideaInput" name="ideaInput" maxlength="60" cols="60" rows="1" style="font-family:ariel"></textarea> <br /><br />
 
-   Category <br>
-   <select name="categoryInput" id="categoryInput" >
-     <option value="None"></option>
-     <option value="Outdoors"> Outdoors </option>
-     <option value="Game"> Game </option>
-     <option value="Skill"> Skill </option>
-     <option value="Service"> Service </option>
-     <option value="Educational"> Educational </option>
-     <option value="Other"> Other </option>
-   </select><br><br>
+      Activity Level<br />
+      <select name="activityLevelInput" id="activityLevelInput">
+        <option value="None"> </option>
+        <option value="Relaxed"> Relaxed </option>
+        <option value="Average"> Average </option>
+        <option value="Active"> Active </option>
+      </select><br><br>
 
-   <input type="submit" value="Add Details" onClick="return verifyInput(1)">
-   <input type="submit" value="Finish" onClick="return verifyInput(0)">
+      Category <br>
+
+      <select name="categoryInput" id="categoryInput" >
+         <option value="None"></option>
+         <option value="Outdoors"> Outdoors </option>
+         <option value="Game"> Game </option>
+         <option value="Skill"> Skill </option>
+         <option value="Service"> Service </option>
+         <option value="Educational"> Educational </option>
+         <option value="Other"> Other </option>
+      </select><br><br>
+
+      <input type="submit" value="Add Details" onClick="return verifyInput(1)">
+      <input type="submit" value="Finish" onClick="return verifyInput(0)">
+
    </div>
 
    <input type="hidden" name="submitType" id="submitType" value="1" />
 
    </form>
-
-   <div id="testDiv"></div>
-  
-
 
 </body>
 </html>
