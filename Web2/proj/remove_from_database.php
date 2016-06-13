@@ -9,12 +9,13 @@ try
 catch (PDOException $theError)
 {
 	echo 'Error: ' . $theError->getMessage();
-	die();					// Kills the program if it didn't work?
+	die();	
 }
 
 $general_idea   = $_POST['selectGeneralDescription'];
 
-$idea_num = 0; // just in case it doesn't find an idea 
+// This variable keeps track of the idea id
+$idea_num = 0; 
 
 // Get the id from the chosen idea
 $statement = $db->PREPARE('SELECT g_id FROM general_ideas WHERE description = :general_idea');
