@@ -32,8 +32,25 @@ catch (PDOException $theError)
   <form action="remove_from_database.php" method="POST">
   <div style = "margin: 40px; padding:20px; background-color:rgba(250,250,250,0.8); border-radius:25px">
 
-     Select one 
-     <select name="selectGeneralDescription" id="selectGeneralDescription">
+     Select a Specific Idea <br />
+     <select name="selectDetailedDescription" id="selectDetailedDescription" style="width:560px">
+	  <option value="None"> </option>
+
+	// Show all of the existing specific ideas in the select list
+	<?php $statement = $db->QUERY('SELECT description, d_id FROM details');
+	WHILE ($oneRow = $statement->FETCH(PDO::FETCH_ASSOC))
+	{
+		echo '<option value="'. htmlspecialchars($oneRow['description']) . '" style="width:550px">' . $oneRow['description'] . '</option>';
+        }
+	?>
+
+     </select><br /><br />
+
+     Or <br /><br />
+
+     Select a General Idea <br />
+     <select name="selectGeneralDescription" id="selectGeneralDescription" >
+	  <option value="None"> </option>
 
 	// Show all of the existing general ideas in the select list 
 	<?php $statement = $db->QUERY('SELECT description, g_id, category FROM general_ideas');
@@ -44,6 +61,10 @@ catch (PDOException $theError)
 	?>
 
      </select><br /><br />
+
+
+
+
 
      <input type="submit" value="Delete">
      <button type="button" onclick="cancel()">Cancel</button>
