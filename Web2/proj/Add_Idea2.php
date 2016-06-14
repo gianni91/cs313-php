@@ -49,7 +49,21 @@ if ($general_idea == "Custom") {
 
 <html>
 <head>
-  <title> Add FHE Detail </title>
+  <title> Add Detail </title>
+  <script>
+
+	function verifyInput() {
+
+	      // Makes sure that they put in an something for the idea
+ 	      if (!document.getElementById("ideaInput").value.match(/\w/))
+	      {
+		   return false;
+	      } 
+	
+	   return true; 
+	}
+
+  </script>
 </head>
 
 <body style="background-image:url(IdahoFalls2.png); background-attachment:fixed; background-size: 100% 100% ;background-repeat:no-repeat" > 
@@ -94,7 +108,7 @@ if ($general_idea == "Custom") {
    <textarea id="contactInput" name="contactInput" cols="70" maxlength="100" style="font-family:ariel"></textarea> <br><br>
 
 
-   <input type="submit" value="Add">
+   <input type="submit" value="Add" onClick="return verifyInput()">
    </div>
    <input type="hidden" name="general_idea" id="general_idea" value="<?php echo $general_idea ?>" />
    <input type="hidden" name="custom_idea" id="custom_idea" value="<?php echo $custom_idea ?>" />
