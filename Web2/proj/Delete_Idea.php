@@ -39,7 +39,7 @@ catch (PDOException $theError)
 	<?php $statement = $db->QUERY('SELECT description, g_id, category FROM general_ideas');
 	WHILE ($oneRow = $statement->FETCH(PDO::FETCH_ASSOC))
 	{
-		echo '<option value="'. $oneRow['description'] . '">' . $oneRow['description'] . '</option>';
+		echo '<option value="'. htmlspecialchars($oneRow['description']) . '">' . $oneRow['description'] . '</option>';
         }
 	?>
 
