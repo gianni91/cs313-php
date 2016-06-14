@@ -69,7 +69,7 @@ if ($general_idea == "Custom") {
    ?>
 
    Detailed Description <br />
-   <textarea name="ideaInput" id="ideaInput" cols="70" maxlength="1000" style="font-family:ariel"> </textarea> <br><br>
+   <textarea name="ideaInput" id="ideaInput" cols="70" maxlength="400" style="font-family:ariel"></textarea> <br><br>
 
    Minimum Cost (per person) - If you have needed supplies or can borrow them<br>
    $<input type="number" id="minCostInput" name="minCostInput" value="0"></input><br><br>
@@ -87,11 +87,11 @@ if ($general_idea == "Custom") {
    <input type="number" name="travelTimeInput" id="travelTimeInput" value="0"></input><br><br>
 
    Address <br>
-   <textarea id="addressInput" name="addressInput" cols="70" maxlength="200" style="font-family:ariel"> </textarea> <br><br>
+   <textarea id="addressInput" name="addressInput" cols="70" maxlength="100" style="font-family:ariel"></textarea> <br><br>
 
    Contact Info - If you must contact someone in order to get the activity organized/reserved <br>
    Include: Organization/Name, Phone number<br>
-   <textarea id="contactInput" name="contactInput" cols="70" maxlength="200" style="font-family:ariel"> </textarea> <br><br>
+   <textarea id="contactInput" name="contactInput" cols="70" maxlength="100" style="font-family:ariel"></textarea> <br><br>
 
 
    <input type="submit" value="Add">
