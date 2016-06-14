@@ -86,10 +86,10 @@ if ($general_idea == "Custom") {
    <textarea name="ideaInput" id="ideaInput" cols="70" maxlength="400" style="font-family:ariel"></textarea> <br><br>
 
    Minimum Cost (per person) - If you have needed supplies or can borrow them<br>
-   $<input type="number" id="minCostInput" name="minCostInput" value="0"></input><br><br>
+   $<input type="number" id="minCostInput" name="minCostInput" value="0" min="0" max="99"></input><br><br>
 
    Maximum Cost (per person) - If you have to buy or rent supplies<br>
-   $<input type="number" id="maxCostInput" name="maxCostInput" value="0"></input><br><br>
+   $<input type="number" id="maxCostInput" name="maxCostInput" value="0" min="0" max="99"></input><br><br>
 
    Is a car required? <br>
    <select id="carInput" name="carInput">
@@ -98,7 +98,7 @@ if ($general_idea == "Custom") {
    </select><br><br>
 
    Travel Time (minutes)<br>
-   <input type="number" name="travelTimeInput" id="travelTimeInput" value="0"></input><br><br>
+   <input type="number" name="travelTimeInput" id="travelTimeInput" value="0" min="0" max="999"></input><br><br>
 
    Address <br>
    <textarea id="addressInput" name="addressInput" cols="70" maxlength="100" style="font-family:ariel"></textarea> <br><br>
