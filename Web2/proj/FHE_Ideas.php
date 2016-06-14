@@ -59,24 +59,24 @@ catch (PDOException $theError)
 		WHILE ($oneRow0 = $statement0->FETCH(PDO::FETCH_ASSOC))
 		{
 
-		    echo '<tr><td colspan="2"><div style = "margin-left: 30px">'.$oneRow0['description'] .'</div></td><td></td>';  //TODO
+		    echo '<tr><td valign="top" colspan="2"><div style = "margin-left: 30px; font-size:110%">&#10146 '.$oneRow0['description'] .'</div></td><td></td>';
 
 			if($oneRow0['max_price'] != 0)
 			{
-			   echo '<td> $'.$oneRow0['min_price'].' - '.$oneRow0['max_price'] .'</td>';
+			   echo '<td valign="top" style="width:60px"> $'.$oneRow0['min_price'].' - '.$oneRow0['max_price'] .'</td>';
 			} else 
 			{
-			   echo '<td> FREE </td>';
+			   echo '<td> Free </td>';
 			}
 
 			
 			if ($oneRow0['travel_time'] != 0) {
-				echo '<td> '.$oneRow0['travel_time'] .' min. ';
+				echo '<td valign="top" style="width:48px"> '.$oneRow0['travel_time'] .' min. </td>';
 			
 		  	  if ($oneRow0['car_needed'] == 0) {
-				echo 'walking</td>';
+				echo '<td valign="top"><image src="walk.png" width="45" alt="walking"></td>';
 			  } else {
-				echo 'driving</td>';
+				echo '<td valign="top"><image src="car.png" width="45" alt="driving"></td>';
 			  }
 			} else {
 				echo '<td> </td>';
@@ -84,18 +84,18 @@ catch (PDOException $theError)
 
 			echo '</tr>';
 
-			if ( $oneRow0['address'] != NULL && $oneRow0['contact'] != NULL)
+			if ( $oneRow0['address'] != NULL && $oneRow0['contact'] != NULL && (strlen(trim($oneRow0['address'])) > 0 || strlen(trim($oneRow0['contact'])) > 0 ))
 			{	
 			   if($oneRow0['address'] != NULL && strlen(trim($oneRow0['address'])) > 0)
 			   {
-				echo '<td><div style = "margin-left: 150px">Location: '.$oneRow0['address'].'</div></td>';
+				echo '<td valign="top"><div style = " margin-left: 150px"><image src="compass.png" style="width:22" alt="Location: " align="left"> '.$oneRow0['address'].'</div></td>';
 			   } else 
 			   {
 			      echo '<td>  </td>';
 			   }
 			   if($oneRow0['contact'] != NULL && strlen(trim($oneRow0['contact'])) > 0)
 			   {
-				echo '<td> Contact: '.$oneRow0['contact'].'</td>';
+				echo '<td><image src="phone2.png" style="width:22" alt="Contact: " align="left"> '.$oneRow0['contact'].'</td>';
 			   }
 			   else {
 				echo '<td> </td>';
