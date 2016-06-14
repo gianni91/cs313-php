@@ -14,7 +14,7 @@ catch (PDOException $theError)
 
 // Recieve the values obtained in the first idea page (for adding a general idea)
 $general_idea   = $_POST['general_idea'];
-$custom_idea    = $_POST['custom_idea'];
+$custom_idea    = htmlspecialchars($_POST['custom_idea']);
 $activity_level = $_POST['activity_level'];
 $category       = $_POST['category'];
 
@@ -61,13 +61,13 @@ if ($general_idea == "Custom") {
 }
 
 // Get the variables that the user input into 'Add details" page 
-$details        = $_POST['ideaInput'];
+$details        = htmlspecialchars($_POST['ideaInput']);
 $min_cost       = $_POST['minCostInput'];
 $max_cost       = $_POST['maxCostInput'];
 $car            = $_POST['carInput'];
 $travel_time    = $_POST['travelTimeInput'];
-$address        = $_POST['addressInput'];
-$contact        = $_POST['contactInput'];
+$address        = htmlspecialchars($_POST['addressInput']);
+$contact        = htmlspecialchars($_POST['contactInput']);
 
 // Add the detail to the database
 $statement2 = $db->PREPARE('INSERT INTO details VALUES (NULL, :details, :address, :contact, :travel_time, :min_cost, :max_cost, :car)');

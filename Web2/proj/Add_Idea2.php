@@ -14,7 +14,7 @@ catch (PDOException $theError)
 
 // Recieve the values from the form
 $general_idea   = $_POST['selectGeneralDescription'];
-$custom_idea    = $_POST['ideaInput'];
+$custom_idea    = htmlspecialchars($_POST['ideaInput']);
 $activity_level = $_POST['activityLevelInput'];
 $category       = $_POST['categoryInput'];
 $submitType     = $_POST['submitType'];
