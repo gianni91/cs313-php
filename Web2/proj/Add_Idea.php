@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require '../dbConnector.php';
 
 try 
@@ -38,7 +39,7 @@ catch (PDOException $theError)
   </script>
 </head>
 
-<body style="background-image:url(IdahoFalls2.png); background-attachment:fixed; background-size: 100% 100% ;background-repeat:no-repeat" > 
+<body style="background-image:url(Images/IdahoFalls2.png); background-attachment:fixed; background-size: 100% 100% ;background-repeat:no-repeat" > 
 
    <h1 style="text-align:center"> Add an Idea </h1>
 

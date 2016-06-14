@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require '../dbConnector.php';
 
 try 
@@ -49,7 +50,7 @@ if ($general_idea == "Custom") {
 
 <html>
 <head>
-  <title> Add Detail </title>
+  <title> Add FHE Detail </title>
   <script>
 
 	function verifyInput() {
@@ -66,7 +67,7 @@ if ($general_idea == "Custom") {
   </script>
 </head>
 
-<body style="background-image:url(IdahoFalls2.png); background-attachment:fixed; background-size: 100% 100% ;background-repeat:no-repeat" > 
+<body style="background-image:url(Images/IdahoFalls2.png); background-attachment:fixed; background-size: 100% 100% ;background-repeat:no-repeat" > 
 
    <h1 style="text-align:center"> Add Details </h1>
 
@@ -97,8 +98,8 @@ if ($general_idea == "Custom") {
      <option value="1"> Yes </option>
    </select><br><br>
 
-   Travel Time (minutes)<br>
-   <input type="number" name="travelTimeInput" id="travelTimeInput" value="0" min="0" max="999"></input><br><br>
+   Travel Time (minutes)<br>on
+   <input type="number" name="travelTimeInput" id="travelTimeInput" value="0" min="0" max="99"></input><br><br>
 
    Address <br>
    <textarea id="addressInput" name="addressInput" cols="70" maxlength="100" style="font-family:ariel"></textarea> <br><br>

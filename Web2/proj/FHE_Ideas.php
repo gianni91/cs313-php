@@ -1,6 +1,10 @@
 <?php 
-
+session_start();
 require '../dbConnector.php';
+
+if (!isset($_SESSION["loggedIn"])) {
+	$_SESSION["loggedIn"] = "false";
+}
 
 try 
 {
@@ -19,17 +23,30 @@ catch (PDOException $theError)
   <script>
 
 	function addIdea() {
-		window.location.href="Add_Idea.php";
-	}
+          <?php 
+	    if ($_SESSION["loggedIn"] == "true") { 
+ 		echo 'window.location.href="Add_Idea.php";' ;
+	    } else {
+		echo 'window.location.href="log_in.html";' ;
+	    } 
+          ?>
+
+	}	
 
 	function deleteIdea() {
-		window.location.href="Delete_Idea.php";
+          <?php 
+  	    if ($_SESSION["loggedIn"] == "true") { 
+		echo 'window.location.href="Delete_Idea.php";' ;
+ 	    } else {
+		echo 'window.location.href="log_in.html";' ;
+	    } 
+          ?>
 	}
 
   </script>
 </head>
 
-<body style="background-image:url(IdahoFalls2.png); background-attachment:fixed; background-size: 100% 100% ;background-repeat:no-repeat" > 
+<body style="background-image:url(Images/IdahoFalls2.png); background-attachment:fixed; background-size: 100% 100% ;background-repeat:no-repeat" > 
 
   <div align="center">
     <h1 id="text"> Rexburg Home Evening Ideas </h1>
@@ -74,9 +91,9 @@ catch (PDOException $theError)
 				echo '<td valign="top" style="width:48px"> '.$oneRow0['travel_time'] .' min. </td>';
 			
 		  	  if ($oneRow0['car_needed'] == 0) {
-				echo '<td valign="top"><image src="walk.png" width="45" alt="walking"></td>';
+				echo '<td valign="top"><image src="Images/walk.png" width="45" alt="walking"></td>';
 			  } else {
-				echo '<td valign="top"><image src="car.png" width="45" alt="driving"></td>';
+				echo '<td valign="top"><image src="Images/car.png" width="45" alt="driving"></td>';
 			  }
 			} else {
 				echo '<td> </td>';
@@ -88,14 +105,14 @@ catch (PDOException $theError)
 			{	
 			   if($oneRow0['address'] != NULL && strlen(trim($oneRow0['address'])) > 0)
 			   {
-				echo '<td valign="top"><div style = " margin-left: 150px"><image src="compass.png" style="width:22" alt="Location: " align="left"> '.$oneRow0['address'].'</div></td>';
+				echo '<td valign="top"><div style = " margin-left: 150px"><image src="Images/compass.png" style="width:22" alt="Location: " align="left"> '.$oneRow0['address'].'</div></td>';
 			   } else 
 			   {
 			      echo '<td>  </td>';
 			   }
 			   if($oneRow0['contact'] != NULL && strlen(trim($oneRow0['contact'])) > 0)
 			   {
-				echo '<td><image src="phone2.png" style="width:22" alt="Contact: " align="left"> '.$oneRow0['contact'].'</td>';
+				echo '<td><image src="Images/phone2.png" style="width:22" alt="Contact: " align="left"> '.$oneRow0['contact'].'</td>';
 			   }
 			   else {
 				echo '<td> </td>';

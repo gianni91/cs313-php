@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require '../dbConnector.php';
 
 try 
@@ -13,7 +14,7 @@ catch (PDOException $theError)
 }
 
 // Recieve the values obtained in the first idea page (for adding a general idea)
-$general_idea   = $_POST['general_idea'];
+$general_idea   = htmlspecialchars($_POST['general_idea']);
 $custom_idea    = htmlspecialchars($_POST['custom_idea']);
 $activity_level = $_POST['activity_level'];
 $category       = $_POST['category'];
